@@ -71,8 +71,8 @@ const TypeIcon = ({ type }: { type: string }) => {
   else if (t.includes('web') || t.includes('site')) { Icon = Globe; colorClass = "text-cyan-500"; }
 
   return (
-    <div className="w-8 h-8 rounded-md bg-muted/50 flex items-center justify-center shrink-0 border border-transparent group-hover:bg-muted group-hover:border-border/50 transition-colors">
-      <Icon className={cn("w-4 h-4", colorClass)} />
+    <div className="w-9 h-9 rounded-md bg-muted/50 flex items-center justify-center shrink-0 border border-transparent group-hover:bg-muted group-hover:border-border/50 transition-colors">
+      <Icon className={cn("w-5 h-5", colorClass)} />
     </div>
   );
 };
@@ -133,7 +133,7 @@ export function ToolTable() {
         />
       ),
       cell: ({ row }) => (
-        <div className="border-l-[3px] border-transparent group-data-[state=selected]:border-primary h-full flex items-center pl-3 -ml-4 transition-colors">
+        <div className="border-l-[3px] border-transparent group-data-[state=selected]:border-primary h-full flex items-center pl-4 -ml-4 transition-colors">
            <Checkbox
             checked={row.getIsSelected()}
             onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -150,7 +150,7 @@ export function ToolTable() {
       accessorKey: "icon",
       header: "",
       cell: ({ row }) => <TypeIcon type={row.original.type} />,
-      size: 50,
+      size: 60,
     },
     {
       accessorKey: "name",
@@ -168,7 +168,7 @@ export function ToolTable() {
       },
       cell: ({ row }) => (
         <div className="flex flex-col max-w-[240px]">
-          <span className="font-semibold text-foreground truncate tracking-tight">{row.getValue("name")}</span>
+          <span className="font-semibold text-base text-foreground truncate tracking-tight">{row.getValue("name")}</span>
           <a 
             href={row.original.url} 
             target="_blank" 
@@ -186,7 +186,7 @@ export function ToolTable() {
       accessorKey: "type",
       header: ({ column }) => {
         return (
-          <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center">
+          <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center">
             <Button
               variant="ghost"
               onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
@@ -199,8 +199,8 @@ export function ToolTable() {
         )
       },
       cell: ({ row }) => (
-        <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center">
-          <Badge variant="outline" className={`font-normal whitespace-nowrap px-2.5 py-0.5 rounded-full border-none ${getTypeColor(row.getValue("type"))}`}>
+        <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center">
+          <Badge variant="outline" className={`font-medium whitespace-nowrap px-3 py-1 rounded-full border-none ${getTypeColor(row.getValue("type"))}`}>
             {row.getValue("type")}
           </Badge>
         </div>
@@ -208,10 +208,10 @@ export function ToolTable() {
     },
     {
       accessorKey: "whatItIs",
-      header: () => <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center font-semibold text-muted-foreground">Description</div>,
+      header: () => <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center font-semibold text-muted-foreground">Description</div>,
       cell: ({ row }) => (
-        <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center">
-          <div className="max-w-[320px] truncate text-muted-foreground/80 text-sm" title={row.getValue("whatItIs") || row.original.summary}>
+        <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center">
+          <div className="max-w-[320px] truncate text-muted-foreground/70 text-sm" title={row.getValue("whatItIs") || row.original.summary}>
             {row.getValue("whatItIs") || row.original.summary}
           </div>
         </div>
@@ -219,17 +219,17 @@ export function ToolTable() {
     },
     {
       accessorKey: "tags",
-      header: () => <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center font-semibold text-muted-foreground">Tags</div>,
+      header: () => <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center font-semibold text-muted-foreground">Tags</div>,
       cell: ({ row }) => (
-        <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center">
-          <div className="flex flex-wrap gap-1.5 max-w-[200px]">
+        <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center">
+          <div className="flex flex-wrap gap-2 max-w-[200px]">
             {(row.getValue("tags") as string[]).slice(0, 3).map((tag) => (
-              <span key={tag} className={`px-2 py-0.5 rounded-full text-[10px] font-medium border ${getTagColor(tag)}`}>
+              <span key={tag} className={`px-2.5 py-1 rounded-full text-[10px] font-medium border ${getTagColor(tag)}`}>
                 {tag}
               </span>
             ))}
             {(row.getValue("tags") as string[]).length > 3 && (
-              <span className="text-[10px] text-muted-foreground px-1 self-center bg-muted rounded-full py-0.5 min-w-[20px] text-center border border-border shadow-sm">
+              <span className="text-[10px] text-muted-foreground px-1.5 self-center bg-muted rounded-full py-0.5 min-w-[20px] text-center border border-border shadow-sm">
                 +{(row.getValue("tags") as string[]).length - 3}
               </span>
             )}
@@ -241,7 +241,7 @@ export function ToolTable() {
       accessorKey: "createdAt",
       header: ({ column }) => {
         return (
-          <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center">
+          <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center">
             <Button
               variant="ghost"
               onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
@@ -254,7 +254,7 @@ export function ToolTable() {
         )
       },
       cell: ({ row }) => (
-        <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center">
+        <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center">
           <span className="text-muted-foreground whitespace-nowrap text-xs font-medium">
             {format(row.getValue("createdAt"), 'MMM d, yyyy')}
           </span>
@@ -263,24 +263,24 @@ export function ToolTable() {
     },
     {
       id: "actions",
-      header: () => <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center"></div>,
+      header: () => <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center"></div>,
       cell: ({ row }) => {
         const tool = row.original;
         return (
-          <div className="border-l border-border/60 pl-4 -ml-4 h-full flex items-center justify-end pr-2">
+          <div className="border-l border-border/40 pl-4 -ml-4 h-full flex items-center justify-end pr-2">
             <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm rounded-md shadow-sm border border-border/50 p-0.5">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="h-7 w-7 hover:bg-muted"
+                    className="h-8 w-8 hover:bg-muted"
                     onClick={(e) => {
                       e.stopPropagation();
                       dispatch({ type: 'TOGGLE_PIN', payload: { id: tool.id } });
                     }}
                   >
-                    <Star className={`h-3.5 w-3.5 ${tool.isPinned ? 'fill-yellow-500 text-yellow-500' : 'text-muted-foreground'}`} />
+                    <Star className={`h-4 w-4 ${tool.isPinned ? 'fill-yellow-500 text-yellow-500' : 'text-muted-foreground'}`} />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>Favorite</TooltipContent>
@@ -291,13 +291,13 @@ export function ToolTable() {
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="h-7 w-7 hover:bg-muted"
+                    className="h-8 w-8 hover:bg-muted"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleEdit(tool);
                     }}
                   >
-                    <Edit2 className="h-3.5 w-3.5 text-muted-foreground" />
+                    <Edit2 className="h-4 w-4 text-muted-foreground" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>Edit</TooltipContent>
@@ -308,13 +308,13 @@ export function ToolTable() {
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="h-7 w-7 text-destructive hover:text-destructive hover:bg-destructive/10"
+                    className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleDelete(tool.id);
                     }}
                   >
-                    <Trash2 className="h-3.5 w-3.5" />
+                    <Trash2 className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>Delete</TooltipContent>
@@ -350,7 +350,7 @@ export function ToolTable() {
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="hover:bg-transparent border-none">
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} style={{ width: header.getSize() }} className="h-11 text-xs font-semibold uppercase tracking-wider text-foreground/70 first:pl-4">
+                  <TableHead key={header.id} style={{ width: header.getSize() }} className="h-12 text-xs font-semibold uppercase tracking-wider text-foreground/70 first:pl-4">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -374,11 +374,11 @@ export function ToolTable() {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="group h-[52px] hover:bg-muted/40 data-[state=selected]:bg-primary/5 border-b border-border/40 transition-colors relative"
+                  className="group h-[60px] hover:bg-muted/30 data-[state=selected]:bg-primary/5 border-b border-border/30 transition-colors relative"
                   onClick={() => dispatch({ type: 'SELECT_TOOL', payload: { id: row.original.id } })}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} style={{ width: cell.column.getSize() }} className="py-1 text-sm first:pl-4">
+                    <TableCell key={cell.id} style={{ width: cell.column.getSize() }} className="py-2 text-sm px-4 first:pl-4">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
