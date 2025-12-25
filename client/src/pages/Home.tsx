@@ -2,11 +2,25 @@ import React, { useState } from 'react';
 import { Sidebar } from '@/components/Sidebar';
 import { ToolTable } from '@/components/ToolTable';
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable"
-import { Menu } from 'lucide-react';
+import { Menu, Loader2 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from '@/components/ui/button';
+import { useApp } from '@/lib/store';
 
 export default function Home() {
+  const { isLoading } = useApp();
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen w-full items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <p className="text-muted-foreground">Loading AI Vault...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-screen w-full overflow-hidden bg-background">
       {/* Mobile Sidebar */}
