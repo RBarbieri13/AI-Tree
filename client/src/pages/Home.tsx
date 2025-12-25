@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sidebar, MobileSidebar } from '@/components/Sidebar';
+import { Sidebar } from '@/components/Sidebar';
 import { ToolTable } from '@/components/ToolTable';
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable"
 import { Menu } from 'lucide-react';

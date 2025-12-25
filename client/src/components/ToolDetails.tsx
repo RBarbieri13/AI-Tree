@@ -22,8 +22,8 @@ export function ToolDetails() {
         </div>
         <h3 className="text-lg font-medium text-foreground">No tool selected</h3>
         <p className="max-w-sm mt-2">Select a tool from the sidebar to view its details, or create a new one to get started.</p>
-        <Button className="mt-6" onClick={() => dispatch({ type: 'ADD_TOOL', payload: { name: '', url: '', type: '', summary: '', whatItIs: '', capabilities: [], bestFor: [], tags: [], categoryId: state.categories[0]?.id || '' } })}>
-          Create New Tool
+        <Button className="mt-6" variant="outline">
+          Select a Tool
         </Button>
       </div>
     );
