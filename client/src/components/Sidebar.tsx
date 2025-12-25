@@ -30,9 +30,6 @@ export function Sidebar({ className }: { className?: string }) {
   useHotkeys('mod+k', (e) => { e.preventDefault(); document.getElementById('search-tools')?.focus() });
   useHotkeys('mod+n', (e) => { e.preventDefault(); setIsAddToolOpen(true) });
 
-  // Handle category drag and drop logic removed for simplicity in this specific "fixed sidebar" iteration request, 
-  // as the request focuses more on the Table View. Categories are collapsible.
-
   const handleExport = () => {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ categories: state.categories, tools: state.tools }, null, 2));
     const downloadAnchorNode = document.createElement('a');
@@ -98,7 +95,7 @@ export function Sidebar({ className }: { className?: string }) {
       <div className="p-4 border-b border-sidebar-border">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="bg-primary text-primary-foreground p-1.5 rounded-md">
+            <div className="bg-primary text-primary-foreground p-1.5 rounded-md shadow-sm">
               <Box className="w-4 h-4" />
             </div>
             <h2 className="font-bold text-lg tracking-tight">AI Vault</h2>
@@ -107,7 +104,7 @@ export function Sidebar({ className }: { className?: string }) {
             <ModeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
                   <MoreHorizontal className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -151,10 +148,10 @@ export function Sidebar({ className }: { className?: string }) {
               <div 
                 key={tool.id}
                 className={cn(
-                  "flex items-center gap-2 px-2 py-1.5 rounded-md text-sm transition-all cursor-pointer group border border-transparent",
+                  "flex items-center gap-2 px-2 py-1.5 rounded-md text-sm transition-all cursor-pointer group border-l-[3px]",
                   state.selectedToolId === tool.id
-                    ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium shadow-sm" 
-                    : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground"
+                    ? "bg-sidebar-accent border-primary text-sidebar-foreground font-medium shadow-sm" 
+                    : "border-transparent text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground hover:border-sidebar-border/50"
                 )}
                 onClick={() => dispatch({ type: 'SELECT_TOOL', payload: { id: tool.id } })}
               >
@@ -212,10 +209,10 @@ export function Sidebar({ className }: { className?: string }) {
                             <div 
                               key={tool.id}
                               className={cn(
-                                "flex items-center gap-2 px-2 py-1 rounded-md text-sm transition-colors cursor-pointer",
+                                "flex items-center gap-2 px-2 py-1 rounded-md text-sm transition-colors cursor-pointer border-l-[3px]",
                                 state.selectedToolId === tool.id
-                                  ? "text-primary font-medium bg-sidebar-accent/50" 
-                                  : "text-muted-foreground hover:text-foreground hover:bg-sidebar-accent/30"
+                                  ? "bg-sidebar-accent border-primary text-foreground font-medium" 
+                                  : "border-transparent text-muted-foreground hover:text-foreground hover:bg-sidebar-accent/30 hover:border-sidebar-border/50"
                               )}
                               onClick={() => dispatch({ type: 'SELECT_TOOL', payload: { id: tool.id } })}
                             >
