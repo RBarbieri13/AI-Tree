@@ -367,13 +367,13 @@ export function DataGrid({
   let globalRowNumber = 0;
 
   return (
-    <div className={cn("flex flex-col h-full bg-white dark:bg-slate-900", className)}>
+    <div className={cn("flex flex-col h-full bg-[#1e2433]", className)}>
       {/* Header */}
       <div
         className={cn(
           "grid items-center gap-0 px-2 h-[26px] min-h-[26px]",
-          "bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700",
-          "text-[9px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+          "bg-[#252b3b] border-b border-slate-700/50",
+          "text-[9px] font-semibold uppercase tracking-wider text-slate-500"
         )}
         style={{ gridTemplateColumns }}
       >
@@ -427,13 +427,13 @@ export function DataGrid({
           const isGroupPartiallySelected = groupSelected > 0 && groupSelected < categoryTools.length;
 
           return (
-            <div key={type} className="border-b border-slate-100 dark:border-slate-800">
+            <div key={type} className="border-b border-slate-700/30">
               {/* Group Header */}
               <div
                 className={cn(
                   "flex items-center gap-1.5 px-2 h-[24px]",
-                  "bg-slate-50 dark:bg-slate-800/70 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800",
-                  "border-b border-slate-100 dark:border-slate-700 group"
+                  "bg-[#252b3b] cursor-pointer hover:bg-[#2a3142]",
+                  "border-b border-slate-700/50 group"
                 )}
                 onClick={() => toggleGroup(type)}
               >
@@ -455,7 +455,7 @@ export function DataGrid({
                 >
                   {meta.icon}
                 </span>
-                <span className="text-[10px] font-semibold text-slate-700 dark:text-slate-200">
+                <span className="text-[10px] font-semibold text-slate-300">
                   {type}
                 </span>
                 <span className="text-[9px] text-slate-400">({categoryTools.length})</span>
@@ -486,14 +486,14 @@ export function DataGrid({
                     key={tool.id}
                     className={cn(
                       "grid items-center gap-0 px-2 h-[22px] min-h-[22px] group",
-                      "border-b border-slate-50 dark:border-slate-800/50",
+                      "border-b border-slate-700/30",
                       "cursor-pointer transition-colors",
                       isSelected
-                        ? "bg-blue-50 dark:bg-blue-900/20"
+                        ? "bg-cyan-500/20 border-l-2 border-l-cyan-400"
                         : isRowChecked
-                          ? "bg-blue-50/50 dark:bg-blue-900/10"
-                          : "hover:bg-slate-50 dark:hover:bg-slate-800/30",
-                      localIndex % 2 === 1 && !isSelected && !isRowChecked && "bg-slate-50/30 dark:bg-slate-800/10"
+                          ? "bg-cyan-500/10"
+                          : "hover:bg-white/5 border-l-2 border-l-transparent",
+                      localIndex % 2 === 1 && !isSelected && !isRowChecked && "bg-white/[0.02]"
                     )}
                     style={{ gridTemplateColumns }}
                     onClick={() => handleSelectRow(tool.id)}
@@ -535,7 +535,7 @@ export function DataGrid({
 
                     {/* Name */}
                     <div className="flex items-center gap-1 min-w-0 px-1">
-                      <span className="text-[10px] font-medium text-slate-800 dark:text-slate-200 truncate">
+                      <span className="text-[10px] font-medium text-slate-200 truncate">
                         {tool.name}
                       </span>
                       {isHovered && (
@@ -543,7 +543,7 @@ export function DataGrid({
                           href={tool.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-shrink-0 text-slate-400 hover:text-blue-500"
+                          className="flex-shrink-0 text-slate-400 hover:text-cyan-400"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <ExternalLink className="w-2.5 h-2.5" />
@@ -573,7 +573,7 @@ export function DataGrid({
 
                     {/* Description */}
                     <div className="flex items-center min-w-0 px-1">
-                      <span className="text-[9px] text-slate-500 dark:text-slate-400 truncate">
+                      <span className="text-[9px] text-slate-400 truncate">
                         {tool.summary}
                       </span>
                     </div>

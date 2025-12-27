@@ -94,19 +94,18 @@ export function Toolbar({
   return (
     <div className={cn(
       "flex items-center gap-1.5 px-3 h-[32px] min-h-[32px]",
-      "bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700",
+      "bg-[#1e2433] border-b border-slate-700/50",
       className
     )}>
       {/* View Mode Dropdown */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             className={cn(
               "h-6 px-2 text-[10px] font-medium gap-1",
-              "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700",
-              "hover:bg-slate-100 dark:hover:bg-slate-700"
+              "text-slate-400 hover:text-slate-200 hover:bg-white/5"
             )}
           >
             <Table className="w-3 h-3" />
@@ -146,12 +145,11 @@ export function Toolbar({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             className={cn(
               "h-6 px-2 text-[10px] font-medium gap-1",
-              "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700",
-              "hover:bg-slate-100 dark:hover:bg-slate-700"
+              "text-slate-400 hover:text-slate-200 hover:bg-white/5"
             )}
           >
             <Columns className="w-3 h-3" />
@@ -181,19 +179,18 @@ export function Toolbar({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             className={cn(
               "h-6 px-2 text-[10px] font-medium gap-1",
-              "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700",
-              "hover:bg-slate-100 dark:hover:bg-slate-700",
-              hasActiveFilters && "border-blue-300 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+              "text-slate-400 hover:text-slate-200 hover:bg-white/5",
+              hasActiveFilters && "text-cyan-400"
             )}
           >
             <Filter className="w-3 h-3" />
             Filter
             {activeFilterCount > 0 && (
-              <span className="ml-0.5 text-[8px] px-1 py-0.5 bg-blue-500 text-white rounded-full">
+              <span className="ml-0.5 text-[8px] px-1 py-0.5 bg-cyan-500 text-white rounded-full">
                 {activeFilterCount}
               </span>
             )}
@@ -264,12 +261,11 @@ export function Toolbar({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             className={cn(
               "h-6 px-2 text-[10px] font-medium gap-1",
-              "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700",
-              "hover:bg-slate-100 dark:hover:bg-slate-700"
+              "text-slate-400 hover:text-slate-200 hover:bg-white/5"
             )}
           >
             <ArrowUpDown className="w-3 h-3" />
@@ -295,12 +291,11 @@ export function Toolbar({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             className={cn(
               "h-6 px-2 text-[10px] font-medium gap-1",
-              "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700",
-              "hover:bg-slate-100 dark:hover:bg-slate-700"
+              "text-slate-400 hover:text-slate-200 hover:bg-white/5"
             )}
           >
             <Layers className="w-3 h-3" />
@@ -324,12 +319,11 @@ export function Toolbar({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             className={cn(
               "h-6 px-2 text-[10px] font-medium gap-1",
-              "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700",
-              "hover:bg-slate-100 dark:hover:bg-slate-700"
+              "text-slate-400 hover:text-slate-200 hover:bg-white/5"
             )}
           >
             <Download className="w-3 h-3" />
@@ -350,12 +344,11 @@ export function Toolbar({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             className={cn(
               "h-6 px-2 text-[10px] font-medium gap-1",
-              "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700",
-              "hover:bg-slate-100 dark:hover:bg-slate-700"
+              "text-slate-400 hover:text-slate-200 hover:bg-white/5"
             )}
           >
             <Bookmark className="w-3 h-3" />
@@ -385,34 +378,34 @@ export function Toolbar({
       {/* Bulk Actions (shown when items selected) */}
       {selectedCount > 0 && (
         <div className="flex items-center gap-1.5 mr-2">
-          <span className="text-[10px] text-slate-500 mr-1">
+          <span className="text-[10px] text-slate-400 mr-1">
             {selectedCount} selected
           </span>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="h-6 px-2 text-[10px]"
+            className="h-6 px-2 text-[10px] text-slate-400 hover:text-slate-200 hover:bg-white/5"
           >
             Merge
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="h-6 px-2 text-[10px]"
+            className="h-6 px-2 text-[10px] text-slate-400 hover:text-slate-200 hover:bg-white/5"
           >
             Archive
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="h-6 px-2 text-[10px]"
+            className="h-6 px-2 text-[10px] text-slate-400 hover:text-slate-200 hover:bg-white/5"
           >
             Tag
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="h-6 px-2 text-[10px] text-red-500 hover:text-red-600"
+            className="h-6 px-2 text-[10px] text-red-400 hover:text-red-300 hover:bg-red-500/10"
             onClick={onDeleteSelected}
           >
             <Trash2 className="w-3 h-3 mr-1" />
@@ -425,11 +418,11 @@ export function Toolbar({
       <Button
         variant="ghost"
         size="sm"
-        className="h-6 w-6 p-0"
+        className="h-6 w-6 p-0 text-slate-400 hover:text-slate-200 hover:bg-white/5"
         onClick={onRefresh}
         title="Refresh"
       >
-        <RefreshCw className="w-3.5 h-3.5 text-slate-500" />
+        <RefreshCw className="w-3.5 h-3.5" />
       </Button>
     </div>
   );

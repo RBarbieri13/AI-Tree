@@ -128,10 +128,10 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
 
   return (
     <TooltipProvider>
-      <div className="h-full flex flex-col overflow-hidden bg-white dark:bg-slate-900">
+      <div className="h-full flex flex-col overflow-hidden bg-[#1e2433]">
         {/* Header */}
-        <div className="flex items-start justify-between p-3 border-b border-slate-200 dark:border-slate-700">
-          <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate flex items-center gap-1.5">
+        <div className="flex items-start justify-between p-3 border-b border-slate-700/50">
+          <h2 className="text-sm font-semibold text-white truncate flex items-center gap-1.5">
             {selectedTool.icon && <span>{selectedTool.icon}</span>}
             {selectedTool.name}
           </h2>
@@ -139,7 +139,7 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="h-6 w-6 text-slate-400 hover:text-slate-600"
+              className="h-6 w-6 text-slate-400 hover:text-white hover:bg-white/10"
               onClick={onClose}
             >
               <X className="w-4 h-4" />
@@ -148,7 +148,7 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
         </div>
 
         {/* Content - Compact Field List */}
-        <div className="flex-1 overflow-auto p-3">
+        <div className="flex-1 overflow-auto thin-scrollbar p-3">
           <div className="space-y-3">
             {/* Type */}
             <div className="flex items-center justify-between">
@@ -176,7 +176,7 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
             {/* Description */}
             <div>
               <span className="text-[10px] text-slate-500 uppercase tracking-wider block mb-1">Description</span>
-              <p className="text-[10px] text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-[10px] text-slate-300 leading-relaxed">
                 {selectedTool.whatItIs || selectedTool.summary}
               </p>
             </div>
@@ -184,7 +184,7 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
             {/* Tags */}
             <div>
               <span className="text-[10px] text-slate-500 uppercase tracking-wider block mb-1">Tags</span>
-              <div className="text-[10px] text-slate-600 dark:text-slate-300">
+              <div className="text-[10px] text-slate-300">
                 {selectedTool.tags?.join(', ') || 'No tags'}
               </div>
             </div>
@@ -196,7 +196,7 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
                 href={selectedTool.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[10px] text-blue-600 dark:text-blue-400 flex items-center gap-1 hover:underline"
+                className="text-[10px] text-cyan-400 flex items-center gap-1 hover:underline"
               >
                 <Link2 className="w-3 h-3" />
                 {getSourceDomain(selectedTool.url)}
@@ -215,7 +215,7 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
             {/* Access */}
             <div className="flex items-center justify-between">
               <span className="text-[10px] text-slate-500 uppercase tracking-wider">Access</span>
-              <span className="text-[10px] text-slate-600 dark:text-slate-300 flex items-center gap-1">
+              <span className="text-[10px] text-slate-300 flex items-center gap-1">
                 <Globe className="w-3 h-3 text-green-500" />
                 {getAccessLabel(selectedTool)}
               </span>
@@ -224,7 +224,7 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
             {/* Owner */}
             <div className="flex items-center justify-between">
               <span className="text-[10px] text-slate-500 uppercase tracking-wider">Owner</span>
-              <span className="text-[10px] text-slate-600 dark:text-slate-300">
+              <span className="text-[10px] text-slate-300">
                 {getOwner(selectedTool)}
               </span>
             </div>
@@ -232,7 +232,7 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
             {/* Date Added */}
             <div className="flex items-center justify-between">
               <span className="text-[10px] text-slate-500 uppercase tracking-wider">Date Added</span>
-              <span className="text-[10px] text-slate-600 dark:text-slate-300">
+              <span className="text-[10px] text-slate-300">
                 {formatDate(selectedTool.createdAt)}
               </span>
             </div>
@@ -240,15 +240,15 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
             {/* Last Modified */}
             <div className="flex items-center justify-between">
               <span className="text-[10px] text-slate-500 uppercase tracking-wider">Last Modified</span>
-              <span className="text-[10px] text-slate-600 dark:text-slate-300">
+              <span className="text-[10px] text-slate-300">
                 {formatRelativeTime(selectedTool.createdAt)}
               </span>
             </div>
 
             {/* Trend & Usage */}
-            <div className="pt-2 border-t border-slate-100 dark:border-slate-700">
+            <div className="pt-2 border-t border-slate-700/50">
               <div className="grid grid-cols-2 gap-2">
-                <div className="p-2 rounded bg-slate-50 dark:bg-slate-800/50">
+                <div className="p-2 rounded bg-slate-800/50">
                   <div className="text-[9px] text-slate-500 uppercase tracking-wider mb-1 flex items-center gap-1">
                     <TrendingUp className="w-2.5 h-2.5" />
                     Trend
@@ -260,14 +260,14 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
                     strokeWidth={1}
                   />
                 </div>
-                <div className="p-2 rounded bg-slate-50 dark:bg-slate-800/50">
+                <div className="p-2 rounded bg-slate-800/50">
                   <div className="text-[9px] text-slate-500 uppercase tracking-wider mb-1 flex items-center gap-1">
                     <Activity className="w-2.5 h-2.5" />
                     Usage
                   </div>
                   <div className="flex items-center gap-1.5">
                     <UsageBar value={selectedTool.usage || 50} width={40} height={4} />
-                    <span className="text-[9px] font-medium text-slate-600 dark:text-slate-300">
+                    <span className="text-[9px] font-medium text-slate-300">
                       {selectedTool.usage || 50}%
                     </span>
                   </div>
@@ -278,11 +278,11 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-2 p-3 border-t border-slate-200 dark:border-slate-700">
+        <div className="flex items-center gap-2 p-3 border-t border-slate-700/50">
           <Button
             variant="outline"
             size="sm"
-            className="flex-1 h-7 text-[10px]"
+            className="flex-1 h-7 text-[10px] bg-transparent border-slate-600 text-slate-300 hover:bg-white/5 hover:text-white"
             onClick={() => setIsEditModalOpen(true)}
           >
             <Edit2 className="w-3 h-3 mr-1.5" />
@@ -291,7 +291,7 @@ export function ToolDetails({ tool: propTool, onClose }: ToolDetailsProps) {
           <Button
             variant="outline"
             size="sm"
-            className="flex-1 h-7 text-[10px] text-red-500 hover:text-red-600 border-red-200 hover:border-red-300 hover:bg-red-50"
+            className="flex-1 h-7 text-[10px] bg-transparent border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-400"
             onClick={handleDelete}
           >
             <Trash2 className="w-3 h-3 mr-1.5" />

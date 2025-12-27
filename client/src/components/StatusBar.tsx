@@ -63,8 +63,8 @@ export function StatusBar({ selectedCount = 0, className }: StatusBarProps) {
   return (
     <div className={cn(
       "flex items-center justify-between gap-4 px-4 h-[22px] min-h-[22px]",
-      "bg-slate-50 dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700",
-      "text-[10px] text-slate-500 dark:text-slate-400",
+      "bg-[#1a1f2e] border-t border-slate-700/50",
+      "text-[10px] text-slate-400",
       className
     )}>
       {/* Left side - counts and filters */}
@@ -75,8 +75,8 @@ export function StatusBar({ selectedCount = 0, className }: StatusBarProps) {
 
         {selectedCount > 0 && (
           <>
-            <span className="text-slate-300 dark:text-slate-600">|</span>
-            <span className="text-blue-600 dark:text-blue-400 font-medium">
+            <span className="text-slate-600">|</span>
+            <span className="text-cyan-400 font-medium">
               {selectedCount} selected
             </span>
           </>
@@ -84,8 +84,8 @@ export function StatusBar({ selectedCount = 0, className }: StatusBarProps) {
 
         {filterDescription && (
           <>
-            <span className="text-slate-300 dark:text-slate-600">|</span>
-            <span className="text-slate-400">
+            <span className="text-slate-600">|</span>
+            <span className="text-slate-500">
               {filterDescription}
             </span>
           </>
@@ -107,12 +107,12 @@ export function StatusBar({ selectedCount = 0, className }: StatusBarProps) {
           )}
         </span>
 
-        <span className="text-slate-300 dark:text-slate-600">|</span>
+        <span className="text-slate-600">|</span>
 
-        <span className="font-mono">v2.4.1</span>
+        <span className="font-mono text-slate-500">v2.4.1</span>
 
         <button
-          className="p-0.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded"
+          className="p-0.5 hover:bg-slate-700 rounded"
           title="Settings"
         >
           <Settings className="w-3 h-3" />
