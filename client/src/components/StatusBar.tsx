@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '@/lib/store';
 import { cn } from '@/lib/utils';
+import { RefreshCw, Settings } from 'lucide-react';
 
 interface StatusBarProps {
+  selectedCount?: number;
   className?: string;
 }
 
-export function StatusBar({ className }: StatusBarProps) {
+export function StatusBar({ selectedCount = 0, className }: StatusBarProps) {
   const { state, isLoading } = useApp();
   const [lastSync, setLastSync] = useState<Date>(new Date());
   const [, setTick] = useState(0);
@@ -37,69 +39,84 @@ export function StatusBar({ className }: StatusBarProps) {
   };
 
   const toolCount = Object.keys(state.tools).length;
-  const selectedCount = 3; // Mock selected count
-  const activeFilter = state.typeFilter !== 'all' ? `Type=${state.typeFilter}` : null;
+
+  // Build active filter description
+  const getFilterDescription = () => {
+    const parts: string[] = [];
+    if (state.typeFilter !== 'all') {
+      parts.push(`Type=${state.typeFilter}`);
+    }
+    if (state.statusFilter !== 'all') {
+      parts.push(`Status=${state.statusFilter}`);
+    }
+    if (state.tagFilters.length > 0) {
+      parts.push(`Tags=${state.tagFilters.join(',')}`);
+    }
+    if (state.dateFilter !== 'all') {
+      parts.push(`Date=${state.dateFilter}`);
+    }
+    return parts.length > 0 ? `Filters: ${parts.join(', ')}` : null;
+  };
+
+  const filterDescription = getFilterDescription();
 
   return (
     <div className={cn(
-      "flex items-center justify-between px-3 h-[28px] min-h-[28px]",
+      "flex items-center justify-between gap-4 px-4 h-[22px] min-h-[22px]",
       "bg-[#1a1f2e] border-t border-slate-700/50",
       "text-[10px] text-slate-400",
       className
     )}>
-      {/* Left side - Keyboard shortcuts */}
+      {/* Left side - counts and filters */}
       <div className="flex items-center gap-3">
-        <div className="flex items-center gap-1">
-          <kbd className="px-1 py-0.5 bg-slate-700/50 rounded text-[9px] font-mono text-slate-300">⌘K</kbd>
-          <span>Search</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <kbd className="px-1 py-0.5 bg-slate-700/50 rounded text-[9px] font-mono text-slate-300">⌘N</kbd>
-          <span>New</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <kbd className="px-1 py-0.5 bg-slate-700/50 rounded text-[9px] font-mono text-slate-300">⌘E</kbd>
-          <span>Edit</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <kbd className="px-1 py-0.5 bg-slate-700/50 rounded text-[9px] font-mono text-slate-300">⌘D</kbd>
-          <span>Duplicate</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <kbd className="px-1 py-0.5 bg-slate-700/50 rounded text-[9px] font-mono text-slate-300">⌘⌫</kbd>
-          <span>Delete</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <kbd className="px-1 py-0.5 bg-slate-700/50 rounded text-[9px] font-mono text-slate-300">Tab</kbd>
-          <span>Navigate</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <kbd className="px-1 py-0.5 bg-slate-700/50 rounded text-[9px] font-mono text-slate-300">Space</kbd>
-          <span>Select</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <kbd className="px-1 py-0.5 bg-slate-700/50 rounded text-[9px] font-mono text-slate-300">⌘A</kbd>
-          <span>Select All</span>
-        </div>
-      </div>
+        <span className="font-medium tabular-nums">
+          {toolCount} items
+        </span>
 
-      {/* Right side - Status info */}
-      <div className="flex items-center gap-2">
-        <span className="font-medium">{toolCount} items</span>
-        <span className="text-slate-600">|</span>
-        <span>{selectedCount} selected</span>
-        {activeFilter && (
+        {selectedCount > 0 && (
           <>
             <span className="text-slate-600">|</span>
-            <span>Filters: {activeFilter}</span>
+            <span className="text-cyan-400 font-medium">
+              {selectedCount} selected
+            </span>
           </>
         )}
-        <span className="text-slate-600">|</span>
-        <span>
-          {isLoading ? 'Syncing...' : `Last sync: ${formatRelativeTime(lastSync)}`}
+
+        {filterDescription && (
+          <>
+            <span className="text-slate-600">|</span>
+            <span className="text-slate-500">
+              {filterDescription}
+            </span>
+          </>
+        )}
+      </div>
+
+      {/* Right side - sync status and version */}
+      <div className="flex items-center gap-3">
+        <span className="flex items-center gap-1">
+          {isLoading ? (
+            <>
+              <RefreshCw className="w-3 h-3 animate-spin" />
+              Syncing...
+            </>
+          ) : (
+            <>
+              Last sync: {formatRelativeTime(lastSync)}
+            </>
+          )}
         </span>
+
         <span className="text-slate-600">|</span>
-        <span className="text-slate-500">v2.4.1</span>
+
+        <span className="font-mono text-slate-500">v2.4.1</span>
+
+        <button
+          className="p-0.5 hover:bg-slate-700 rounded"
+          title="Settings"
+        >
+          <Settings className="w-3 h-3" />
+        </button>
       </div>
     </div>
   );
